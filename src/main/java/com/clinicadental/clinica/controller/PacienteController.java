@@ -1,13 +1,14 @@
 package com.clinicadental.clinica.controller;
 
 
-import com.clinicadental.clinica.repository.impl.PacienteDaoH2;
+import com.clinicadental.clinica.repository.impl.IPacienteRepository;
 import com.clinicadental.clinica.model.Paciente;
 import com.clinicadental.clinica.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -15,16 +16,16 @@ import java.util.List;
 public class PacienteController {
 
     @Autowired
-    private PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
+    private PacienteService pacienteService;
 
     @GetMapping("/{id}")
-    public Paciente buscar(@PathVariable Integer id) {
+    public Optional<Paciente> buscarPorId(@PathVariable Long id) {
         return pacienteService.buscar(id);
 
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarPorId(@PathVariable Integer id) {
+    public void eliminarPorId(@PathVariable Long id) {
         pacienteService.eliminar(id);
     }
 

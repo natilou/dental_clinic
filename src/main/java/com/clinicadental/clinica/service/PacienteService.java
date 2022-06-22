@@ -1,36 +1,35 @@
 package com.clinicadental.clinica.service;
 
-import com.clinicadental.clinica.repository.IDao;
 import com.clinicadental.clinica.model.Paciente;
+import com.clinicadental.clinica.repository.impl.IPacienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PacienteService {
-    private final IDao<Paciente> pacienteDao;
-
-    public PacienteService(IDao<Paciente> pacienteDao) {
-        this.pacienteDao = pacienteDao;
-    }
+    @Autowired
+    private IPacienteRepository iPacienteRepository;
 
     public Paciente registrar(Paciente paciente){
-        return pacienteDao.registrar(paciente);
+        return iPacienteRepository.save(paciente);
     }
 
-    public Paciente buscar(int id){
-        return pacienteDao.buscarPorId(id);
+    public Optional<Paciente> buscar(Long id){
+        return iPacienteRepository.findById(id);
     }
 
-    public boolean eliminar(int id){
-        return pacienteDao.eliminarPorId(id);
+    public void eliminar(Long id){
+        iPacienteRepository.deleteById(id);
     }
 
     public Paciente modificar(Paciente paciente){
-        return pacienteDao.modificar(paciente);
+        return iPacienteRepository.save(paciente);
     }
 
     public List<Paciente> buscarTodos(){
-        return pacienteDao.buscarTodos();
+        return iPacienteRepository.findAll();
     }
 
 }

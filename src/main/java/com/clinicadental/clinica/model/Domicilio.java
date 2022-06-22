@@ -1,7 +1,15 @@
 package com.clinicadental.clinica.model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="domicilios")
 public class Domicilio {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private Long id;
     private String calle;
     private int numero;
     private String localidad;
@@ -19,7 +27,7 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public Domicilio(int id, String calle, int numero, String localidad, String provincia) {
+    public Domicilio(Long id, String calle, int numero, String localidad, String provincia) {
         this.id = id;
         this.calle = calle;
         this.numero = numero;
@@ -27,11 +35,11 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

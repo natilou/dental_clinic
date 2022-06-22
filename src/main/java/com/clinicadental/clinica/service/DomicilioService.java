@@ -1,35 +1,35 @@
 package com.clinicadental.clinica.service;
 
-import com.clinicadental.clinica.repository.IDao;
 import com.clinicadental.clinica.model.Domicilio;
+import com.clinicadental.clinica.repository.impl.IDomicilioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DomicilioService {
-    private final IDao<Domicilio> domicilioDao;
+    @Autowired
+    private IDomicilioRepository iDomicilioRepository;
 
-    public DomicilioService(IDao<Domicilio> domicilioDao) {
-        this.domicilioDao = domicilioDao;
-    }
 
     public Domicilio registrar(Domicilio domicilio){
-        return domicilioDao.registrar(domicilio);
+        return iDomicilioRepository.save(domicilio);
     }
 
-    public Domicilio buscarPorId(int id){
-        return domicilioDao.buscarPorId(id);
+    public Optional<Domicilio> buscarPorId(Long id){
+        return iDomicilioRepository.findById(id);
     }
 
-    public boolean eliminarPorId(int id){
-        return domicilioDao.eliminarPorId(id);
+    public void eliminarPorId(Long id){
+        iDomicilioRepository.deleteById(id);
     }
 
     public Domicilio modificar(Domicilio domicilio){
-        return domicilioDao.modificar(domicilio);
+        return iDomicilioRepository.saveAndFlush(domicilio);
     }
 
     public List<Domicilio> buscarTodos(){
-        return domicilioDao.buscarTodos();
+        return iDomicilioRepository.findAll();
     }
 }

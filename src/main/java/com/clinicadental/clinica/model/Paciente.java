@@ -1,13 +1,21 @@
 package com.clinicadental.clinica.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="pacientes")
 public class Paciente {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private Long id;
     private String apellido;
     private String nombre;
     private String dni;
     private Date fechaIngreso;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_domicilio" , referencedColumnName = "id")
     private Domicilio domicilio;
 
     public Paciente(){
@@ -21,7 +29,7 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public Paciente(int id, String apellido, String nombre, String dni, Date fechaIngreso, Domicilio domicilio) {
+    public Paciente(Long id, String apellido, String nombre, String dni, Date fechaIngreso, Domicilio domicilio) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -71,11 +79,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

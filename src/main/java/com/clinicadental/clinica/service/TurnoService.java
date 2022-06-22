@@ -1,38 +1,37 @@
 package com.clinicadental.clinica.service;
 
-import com.clinicadental.clinica.repository.IDao;
 import com.clinicadental.clinica.model.Turno;
+import com.clinicadental.clinica.repository.impl.ITurnoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TurnoService {
 
-    private IDao<Turno> turnoIDao;
-
-    public TurnoService(IDao<Turno> turnoIDao) {
-        this.turnoIDao = turnoIDao;
-    }
+    @Autowired
+    private ITurnoRepository iTurnoRepository;
 
     public Turno registrar(Turno turno) {
         turno.setFecha(new Date());
-        return turnoIDao.registrar(turno);
+        return iTurnoRepository.save(turno);
     }
 
-    public boolean eliminar(Integer id) {
-        return turnoIDao.eliminarPorId(id);
+    public void eliminar(Long id) {
+        iTurnoRepository.deleteById(id);
     }
 
-    public Turno buscarPorId(Integer id) {
-        return turnoIDao.buscarPorId(id);
+    public Optional<Turno> buscarPorId(Long id) {
+        return iTurnoRepository.findById(id);
     }
 
     public List<Turno> buscarTodos() {
-        return turnoIDao.buscarTodos();
+        return iTurnoRepository.findAll();
     }
 
     public Turno actualizar(Turno turno) {
-        return turnoIDao.modificar(turno);
+        return iTurnoRepository.save(turno);
     }
 }

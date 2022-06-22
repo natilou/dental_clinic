@@ -1,8 +1,8 @@
 package com.clinicadental.clinica.controller;
 
-import com.clinicadental.clinica.repository.impl.OdontologoDaoH2;
-import com.clinicadental.clinica.repository.impl.PacienteDaoH2;
-import com.clinicadental.clinica.repository.impl.TurnoDaoRepository;
+import com.clinicadental.clinica.repository.impl.IOdontologoRepository;
+import com.clinicadental.clinica.repository.impl.IPacienteRepository;
+import com.clinicadental.clinica.repository.impl.ITurnoRepository;
 import com.clinicadental.clinica.model.Turno;
 import com.clinicadental.clinica.service.OdontologoService;
 import com.clinicadental.clinica.service.PacienteService;
@@ -13,31 +13,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/turnos")
 public class TurnoController {
 
     @Autowired
-    private TurnoService turnoService = new TurnoService(new TurnoDaoRepository());
+    private TurnoService turnoService;
     @Autowired
-    private PacienteService pacienteService = new PacienteService(new PacienteDaoH2());
+    private PacienteService pacienteService;
     @Autowired
-    private OdontologoService odontologoService = new OdontologoService(new OdontologoDaoH2());
+    private OdontologoService odontologoService;
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Turno> buscarPorId(@PathVariable Integer id){
-        Turno turno = turnoService.buscarPorId(id);
-        if(turno !=null){
-            return ResponseEntity.ok(turno);
-        }else{
+    public ResponseEntity<Optional<Turno>> buscarPorId(@PathVariable Long id){
+        if(turnoService.buscarPorId(id).isPresent()){
+            return ResponseEntity.ok(turnoService.buscarPorId(id));
+        } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarPorId(@PathVariable Integer id){
+    public ResponseEntity<String> eliminarPorId(@PathVariable Long id){
         ResponseEntity<String> response;
         if (turnoService.buscarPorId(id) != null){
             turnoService.eliminar(id);

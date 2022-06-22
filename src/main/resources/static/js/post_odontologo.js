@@ -65,5 +65,5 @@ window.addEventListener('load', function () {
             document.querySelector(".nav .nav-item a:first").addClass("active");
         } else if (pathname == "/odontologoList.html") {
             document.querySelector(".nav .nav-item a:last").addClass("active");
-    })();
+    }});
 });

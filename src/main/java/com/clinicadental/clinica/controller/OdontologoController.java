@@ -1,6 +1,4 @@
 package com.clinicadental.clinica.controller;
-
-import com.clinicadental.clinica.repository.impl.OdontologoDaoH2;
 import com.clinicadental.clinica.model.Odontologo;
 import com.clinicadental.clinica.service.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/odontologos")
@@ -18,17 +17,16 @@ public class OdontologoController {
     private OdontologoService odontologoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Odontologo> buscarPorId(@PathVariable int id){
-        Odontologo odontologo = odontologoService.buscarPorId(id);
-        if(odontologo !=null){
-            return ResponseEntity.ok(odontologo);
-        }else{
+    public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Long id){
+       if (odontologoService.buscarPorId(id).isPresent()){
+           return ResponseEntity.ok(odontologoService.buscarPorId(id));
+       } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarPorId(@PathVariable int id){
+    public ResponseEntity<String> eliminarPorId(@PathVariable Long id){
         ResponseEntity<String> response;
         if (odontologoService.buscarPorId(id) != null){
             odontologoService.eliminar(id);

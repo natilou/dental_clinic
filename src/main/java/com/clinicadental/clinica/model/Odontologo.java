@@ -1,7 +1,14 @@
 package com.clinicadental.clinica.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="odontologos")
 public class Odontologo {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id")
+    private Long id;
     private int nroMatricula;
     private String nombre;
     private String apellido;
@@ -16,18 +23,18 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
-    public Odontologo(int id, int nroMatricula, String nombre, String apellido) {
+    public Odontologo(Long id, int nroMatricula, String nombre, String apellido) {
         this.id = id;
         this.nroMatricula = nroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

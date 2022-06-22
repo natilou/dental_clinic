@@ -1,29 +1,38 @@
 package com.clinicadental.clinica.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="turnos")
 public class Turno {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_paciente" , referencedColumnName = "id")
     private Paciente paciente;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_odontologo" , referencedColumnName = "id")
     private Odontologo odontologo;
     private Date fecha;
 
     public Turno() {
     }
 
-    public Turno(Integer id, Paciente paciente, Odontologo odontologo, Date fecha) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, Date fecha) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
