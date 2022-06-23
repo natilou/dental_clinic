@@ -11,7 +11,7 @@ public class Util {
 
     }
 
-    //Convierte un Date en un SQL Date
+    // Convert Date to SQL Date
     public static java.sql.Date utilDateToSqlDate(Date utilDate){
         long timeInMilliSeconds = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(timeInMilliSeconds);

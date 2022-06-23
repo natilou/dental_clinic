@@ -12,14 +12,14 @@ window.addEventListener('load', function () {
 
            id: document.querySelector('#odontologo_id_update').value,
 
-           nombre: document.querySelector('#nombre-update').value,
+           firstName: document.querySelector('#nombre-update').value,
 
-           apellido: document.querySelector('#apellido-update').value,
+           lastName: document.querySelector('#apellido-update').value,
 
-           nroMatricula: document.querySelector('#matricula-update').value,
+           registrationNumber: document.querySelector('#matricula-update').value,
        };
 
-       const url = '/odontologos';
+       const url = '/dentists';
 
        const settings = {
 
@@ -46,7 +46,7 @@ window.addEventListener('load', function () {
 
 function findBy(id) {
 
-        const url = '/odontologos'+"/"+id;
+        const url = '/dentists'+"/"+id;
 
         const settings = {
 
@@ -60,15 +60,15 @@ function findBy(id) {
 
         .then(data => {
 
-            let odontologo = data;
+            let dentist = data;
 
-            document.querySelector('#odontologo_id_update').value = odontologo.id;
+            document.querySelector('#odontologo_id_update').value = dentist.id;
 
-            document.querySelector('#nombre-update').value = odontologo.nombre;
+            document.querySelector('#nombre-update').value = dentist.firstName;
 
-            document.querySelector('#apellido-update').value = odontologo.apellido;
+            document.querySelector('#apellido-update').value = dentist.lastName;
 
-            document.querySelector('#matricula-update').value = odontologo.nroMatricula;
+            document.querySelector('#matricula-update').value = dentist.registrationNumber;
 
             document.querySelector('#div_odontologo_updating').style.display = "block";
 

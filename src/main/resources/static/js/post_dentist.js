@@ -10,13 +10,13 @@ window.addEventListener('load', function () {
 
        //creamos un JSON que tendrá los datos de un nuevo odontologo
         const formData = {
-            nroMatricula: document.querySelector('#matricula').value,
-            nombre: document.querySelector('#nombre').value,
-            apellido: document.querySelector('#apellido').value,
+            registrationNumber: document.querySelector('#matricula').value,
+            firstName: document.querySelector('#nombre').value,
+            lastName: document.querySelector('#apellido').value,
         };
         //invocamos utilizando la función fetch la API odontologo con el método POST que guardará
         //el odontologo que enviaremos en formato JSON
-        const url = '/odontologos';
+        const url = '/dentists';
         const settings = {
             method: 'POST',
             headers: {

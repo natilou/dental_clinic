@@ -1,7 +1,7 @@
 function deleteBy(id)
 
 {
-         const url = '/odontologos/'+ id;
+         const url = '/dentists/'+ id;
 
          const settings = {
 

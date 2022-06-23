@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
 
       //con fetch invocamos a la API de odontologos con el método GET
       //nos devolverá un JSON con una colección de odontologos
-      const url = '/odontologos';
+      const url = '/dentists';
       const settings = {
         method: 'GET'
       }
@@ -12,19 +12,19 @@ window.addEventListener('load', function () {
       .then(response => response.json())
       .then(data => {
          //recorremos la colección de odontologos del JSON
-         for(odontologo of data){
+         for(dentist of data){
             //por cada odontologo armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el odontologo
             var table = document.getElementById("odontologoTable");
-            var odontologoRow =table.insertRow();
-            let tr_id = 'tr_' + odontologo.id;
-            odontologoRow.id = tr_id;
+            var dentistRow =table.insertRow();
+            let tr_id = 'tr_' + dentist.id;
+            dentistRow.id = tr_id;
 
             let deleteButton = '<button' +
 
-                               ' id=' + '\"' + 'btn_delete_' + odontologo.id + '\"' +
+                               ' id=' + '\"' + 'btn_delete_' + dentist.id + '\"' +
 
-                               ' type="button" onclick="deleteBy('+ odontologo.id+')"' +
+                               ' type="button" onclick="deleteBy('+ dentist.id+')"' +
 
                                'class="btn btn-danger btn_delete">' +
 
@@ -34,9 +34,9 @@ window.addEventListener('load', function () {
 
             let updateButton = '<button' +
 
-                               ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
+                               ' id=' + '\"' + 'btn_id_' + dentist.id + '\"' +
 
-                               ' type="button" onclick="findBy('+odontologo.id+')"' +
+                               ' type="button" onclick="findBy('+dentist.id+')"' +
 
                                ' class="btn btn-info btn_id">' +
 
@@ -48,11 +48,11 @@ window.addEventListener('load', function () {
             //como primer columna pondremos el boton modificar
             //luego los datos del odontologo
             //como ultima columna el boton eliminar
-            odontologoRow.innerHTML = '<td>' + updateButton + '</td>'+
-                    '<td class=\"td_id\">' + odontologo.id + '</td>' +
-                    '<td class=\"td_nombre\">' + odontologo.nombre.toUpperCase() + '</td>' +
-                    '<td class=\"td_apellido\">' + odontologo.apellido.toUpperCase() + '</td>'+
-                    '<td class=\"td_matricula\">' + odontologo.nroMatricula + '</td>' +
+            dentistRow.innerHTML = '<td>' + updateButton + '</td>'+
+                    '<td class=\"td_id\">' + dentist.id + '</td>' +
+                    '<td class=\"td_nombre\">' + dentist.firstName.toUpperCase() + '</td>' +
+                    '<td class=\"td_apellido\">' + dentist.lastName.toUpperCase() + '</td>'+
+                    '<td class=\"td_matricula\">' + dentist.registrationNumber + '</td>' +
                     '<td>' + deleteButton + '</td>';
 
         };
