@@ -1,9 +1,7 @@
 package com.clinicadental.clinica.controller;
 
 import com.clinicadental.clinica.model.Shift;
-import com.clinicadental.clinica.service.DentistService;
-import com.clinicadental.clinica.service.PatientService;
-import com.clinicadental.clinica.service.ShiftService;
+import com.clinicadental.clinica.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +15,11 @@ import java.util.Optional;
 public class ShiftController {
 
     @Autowired
-    private ShiftService shiftService;
+    private IShiftService shiftService;
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
     @Autowired
-    private DentistService dentistService;
+    private IDentistService dentistService;
 
 
     @GetMapping("/{id}")

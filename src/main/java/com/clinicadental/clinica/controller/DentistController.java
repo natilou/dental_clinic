@@ -1,6 +1,6 @@
 package com.clinicadental.clinica.controller;
 import com.clinicadental.clinica.model.Dentist;
-import com.clinicadental.clinica.service.DentistService;
+import com.clinicadental.clinica.service.IDentistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class DentistController {
 
     @Autowired
-    private DentistService dentistService;
+    private IDentistService dentistService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Dentist>> findById(@PathVariable Long id){

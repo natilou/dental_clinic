@@ -1,4 +1,4 @@
-package com.clinicadental.clinica.repository.impl;
+package com.clinicadental.clinica.repository;
 
 import com.clinicadental.clinica.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;

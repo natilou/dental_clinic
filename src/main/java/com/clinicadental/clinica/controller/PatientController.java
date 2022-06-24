@@ -2,7 +2,7 @@ package com.clinicadental.clinica.controller;
 
 
 import com.clinicadental.clinica.model.Patient;
-import com.clinicadental.clinica.service.PatientService;
+import com.clinicadental.clinica.service.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class PatientController {
 
     @Autowired
-    private PatientService patientService;
+    private IPatientService patientService;
 
     @GetMapping("/{id}")
     public Optional<Patient> findById(@PathVariable Long id) {
