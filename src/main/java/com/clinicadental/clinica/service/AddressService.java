@@ -27,7 +27,7 @@ public class AddressService {
 
 
     public Address update(Address address){
-        return iAddressRepository.saveAndFlush(address);
+        return iAddressRepository.save(address);
     }
 
 
