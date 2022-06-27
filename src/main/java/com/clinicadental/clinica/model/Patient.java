@@ -7,15 +7,15 @@ import java.util.Date;
 @Table(name="patients")
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_sequence")
     @Column(name = "id")
     private Long id;
     private String lastName;
     private String firstName;
     private String dni;
     private Date entryDate;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id" , referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     public Patient(){

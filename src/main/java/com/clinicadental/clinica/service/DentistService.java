@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DentistService implements IDentistService {
+public class DentistService {
     @Autowired
     private IDentistRepository iDentistRepository;
 
@@ -18,24 +18,20 @@ public class DentistService implements IDentistService {
         return iDentistRepository.save(dentist);
     }
 
-    @Override
     public Optional<Dentist> findById(Long id){
 
         return iDentistRepository.findById(id);
     }
 
-    @Override
     public void deleteById(Long id){
 
         iDentistRepository.deleteById(id);
     }
 
-    @Override
     public Dentist update(Dentist dentist){
         return iDentistRepository.save(dentist);
     }
 
-    @Override
     public List<Dentist> findAll(){
 
         return iDentistRepository.findAll();

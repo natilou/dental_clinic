@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="addresses")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
     @Column(name = "id")
     private Long id;
     private String street;

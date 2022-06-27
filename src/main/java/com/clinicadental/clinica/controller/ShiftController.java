@@ -15,11 +15,11 @@ import java.util.Optional;
 public class ShiftController {
 
     @Autowired
-    private IShiftService shiftService;
+    private ShiftService shiftService;
     @Autowired
-    private IPatientService patientService;
+    private PatientService patientService;
     @Autowired
-    private IDentistService dentistService;
+    private DentistService dentistService;
 
 
     @GetMapping("/{id}")

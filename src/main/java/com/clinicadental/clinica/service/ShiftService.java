@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ShiftService implements IShiftService{
+public class ShiftService {
 
 
     @Autowired
     private IShiftRepository iShiftRepository;
 
 
-    @Override
+
     public Shift save(Shift shift) {
         shift.setDate(new Date());
         return iShiftRepository.save(shift);
     }
 
-    @Override
+
     public String deleteById(Long id) {
         String message = "Shift with id " + id + "doesn't exist.";
 
@@ -33,17 +33,17 @@ public class ShiftService implements IShiftService{
         return message;
     }
 
-    @Override
+
     public Optional<Shift> findById(Long id) {
         return iShiftRepository.findById(id);
     }
 
-    @Override
+
     public List<Shift> findAll() {
         return iShiftRepository.findAll();
     }
 
-    @Override
+
     public Shift update(Shift shift) {
         return iShiftRepository.save(shift);
     }
