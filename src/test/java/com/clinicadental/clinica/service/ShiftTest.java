@@ -18,42 +18,57 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShiftTest {
-
-/*
-    private Date date;
-    Address address = new Address("Jacaranda", 709, "Las Heras", "Mendoza");
-    Patient patient = new Patient("Falcone", "Gino", "502356", new Date(), address);
-    Patient patient2 = new Patient("Falcone", "Renzo", "502356", new Date(), address);
-    Dentist dentist = new Dentist(1522, "Isabella", "Lopez");
-
-    Shift turno = new Shift(patient, dentist, new Date());
-    Shift turno2 = new Shift(patient2, dentist, new Date());
-    Shift turno3 = new Shift(patient2, dentist, new Date());
     @Autowired
-    ShiftService shiftService = new ShiftService();
-
+    ShiftService shiftService;
+    @Autowired
+    PatientService patientService;
+    @Autowired
+    DentistService dentistService;
+    @Autowired
+    AddressService addressService;
 
     @Test
-    public void TestRegistrar(){
-        Assertions.assertNotNull(shiftService.save(turno));
-        Assertions.assertNotNull(shiftService.save(turno2));
-        Assertions.assertNotNull(shiftService.save(turno3));
+    public void TestSave(){
+        Address address = new Address("Scranton", 189, "Pensilvania", "Pensi");
+        Patient patient1 = new Patient("Angela", "Martin", "12548996", new Date(), address);
+        Patient patientToSave = patientService.save(patient1);
+        Dentist dentist = new Dentist(18999, "Juan", "Perez");
+        Dentist dentistToSave = dentistService.save(dentist);
+
+        Shift shift1 = new Shift(patientToSave, dentistToSave, new Date());
+        Assertions.assertNotNull(shiftService.save(shift1));
+
     }
 
-    //@Test
-    //public void TestBuscarPorId() {
-        //Assertions.assertNotNull(turnoService.buscarPorId(1));
-    //}
+    @Test
+    public void TestFindById() {
+        Assertions.assertNotNull(shiftService.findById(1L));
+    }
 
     @Test
-    public void TestBuscarTodos() {
+    public void TestFindAll() {
         Assertions.assertNotNull(shiftService.findAll());
     }
 
     @Test
-    public void TestActualizar() {
-        //Assertions.assertNotNull(turnoService.actualizar(turno2));
+    public void TestUpdate() {
+        Address address = new Address("Scranton", 189, "Pensilvania", "Pensi");
+        Patient patient1 = new Patient("Angela", "Martin", "12548996", new Date(), address);
+        Patient patientToSave = patientService.save(patient1);
+        Dentist dentist = new Dentist(18999, "Juan", "Perez");
+        Dentist dentistToSave = dentistService.save(dentist);
+        Dentist dentist2 = new Dentist(1578, "Kevin", "Malone");
+        Dentist dentistToSave2 = dentistService.save(dentist2);
+
+        Shift shift = new Shift(patientToSave, dentistToSave, new Date());
+        Shift shiftSaved = shiftService.save(shift);
+        shiftSaved.setDentist(dentistToSave2);
+        Assertions.assertNotNull(shiftService.update(shiftSaved));
     }
 
-*/
+    @Test
+    public void TestDeleteById(){
+        Assertions.assertTrue(shiftService.deleteById(102L));
+        Assertions.assertTrue(shiftService.deleteById(152L));
+    }
 }

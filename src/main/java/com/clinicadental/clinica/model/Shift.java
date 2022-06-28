@@ -27,7 +27,7 @@ public class Shift {
         this.date = date;
     }
 
-    public Shift(Date date) {
+    public Shift(Patient patient, Dentist dentist, Date date) {
         this.patient = patient;
         this.dentist = dentist;
         this.date = date;

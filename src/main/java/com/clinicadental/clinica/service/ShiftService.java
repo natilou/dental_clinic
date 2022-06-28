@@ -34,12 +34,12 @@ public class ShiftService {
     }
 
 
-    public String deleteById(Long id) {
-        String message = "Shift with id " + id + "doesn't exist.";
+    public boolean deleteById(Long id) {
+        boolean message = false;
 
         if(iShiftRepository.findById(id).isPresent()){
             iShiftRepository.deleteById(id);
-            message = "Shift with id " + id + "was deleted.";
+            message = true;
         }
         return message;
     }
