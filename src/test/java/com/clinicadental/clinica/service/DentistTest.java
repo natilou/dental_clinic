@@ -33,17 +33,17 @@ public class DentistTest {
 
     }
     @Test
-    public void TestBuscarTodos(){
+    public void TestFindAll(){
         Assertions.assertNotNull(dentistService.findAll());
     }
 
     @Test
-    public void TestBuscarPorId(){
+    public void TestFindById(){
         Assertions.assertNotNull(dentistService.findById(1L));
     }
 
     @Test
-    public void TestEliminar() {
+    public void TestDeleteById() {
         Assertions.assertTrue(dentistService.deleteById(3L));
     }
 }

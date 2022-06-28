@@ -20,7 +20,7 @@ public class AddressTest {
     private AddressService addressService;
 
     @Test
-    public void testRegistrar(){
+    public void TestSave(){
         Address address = new Address("Jacaranda", 709, "Las Heras", "Mendoza");
         Assertions.assertNotNull(addressService.save(address));
     }
@@ -32,12 +32,12 @@ public class AddressTest {
     }*/
 
     @Test
-    public void testBuscarTodos(){
+    public void TestFindAll(){
         Assertions.assertNotNull(addressService.findAll());
     }
 
     @Test
-    public void testBuscarPorId(){
+    public void TestFindById(){
         Assertions.assertNotNull(addressService.findById(21L));
     }
 }

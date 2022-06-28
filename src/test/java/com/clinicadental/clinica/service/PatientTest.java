@@ -28,7 +28,7 @@ public class PatientTest {
     AddressService addressService = new AddressService();
 
     @Test
-    public void testRegistrar(){
+    public void TestAddNewPatient(){
         Address address1 = addressService.save(address);
         Patient patient = new Patient("Falcone", "Gino", "502356", new Date(), address1);
         Patient patient2 = new Patient("Paura", "Renzo", "1236587", new Date(), address1);
@@ -39,17 +39,17 @@ public class PatientTest {
     }
 
    @Test
-    public void testEliminar(){
+    public void TestDeleteById(){
        patientService.deleteById(1L);
         Assertions.assertTrue(patientService.findById(1L)==null);
     }
     @Test
-    public void testBuscarTodos(){
+    public void TestFindAll(){
         Assertions.assertTrue(patientService.findAll().size() == 10);
     }
 
     @Test
-    public void TestBuscarPorId(){
+    public void TestFindById(){
         Assertions.assertNotNull(patientService.findById(25L));
     }
 }
