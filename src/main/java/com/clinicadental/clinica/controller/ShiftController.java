@@ -1,5 +1,4 @@
 package com.clinicadental.clinica.controller;
-
 import com.clinicadental.clinica.model.Shift;
 import com.clinicadental.clinica.service.*;
 import org.springframework.beans.factory.annotation.Autowired;

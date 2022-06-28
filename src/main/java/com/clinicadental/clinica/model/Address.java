@@ -15,9 +15,7 @@ public class Address {
     private String location;
     private String province;
 
-
     public Address(){
-
     }
 
     public Address(String street, int number, String location, String province) {

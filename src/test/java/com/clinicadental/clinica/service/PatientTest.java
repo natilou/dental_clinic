@@ -2,6 +2,8 @@ package com.clinicadental.clinica.service;
 
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Patient;
+import com.clinicadental.clinica.service.AddressService;
+import com.clinicadental.clinica.service.PatientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,10 +38,11 @@ public class PatientTest {
         Assertions.assertNotNull(patientService.save(patient3));
     }
 
-   /*@Test
+   @Test
     public void testEliminar(){
-        Assertions.assertTrue(patientService.deleteById(25L));
-    }*/
+       patientService.deleteById(1L);
+        Assertions.assertTrue(patientService.findById(1L)==null);
+    }
     @Test
     public void testBuscarTodos(){
         Assertions.assertTrue(patientService.findAll().size() == 10);

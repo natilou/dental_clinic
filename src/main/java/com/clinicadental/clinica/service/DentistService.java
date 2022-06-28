@@ -18,14 +18,24 @@ public class DentistService {
         return iDentistRepository.save(dentist);
     }
 
-    public Optional<Dentist> findById(Long id){
-
-        return iDentistRepository.findById(id);
+    public Dentist  findById(Long id){
+        Dentist dentist = null;
+        Optional<Dentist> optionalDentist = iDentistRepository.findById(id);
+        if (optionalDentist.isPresent()){
+            dentist = optionalDentist.get();
+        }
+        return dentist;
     }
 
-    public void deleteById(Long id){
-
-        iDentistRepository.deleteById(id);
+    public boolean deleteById(Long id){
+        boolean result = false;
+        try{
+            iDentistRepository.deleteById(id);
+            result = true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public Dentist update(Dentist dentist){
@@ -35,5 +45,9 @@ public class DentistService {
     public List<Dentist> findAll(){
 
         return iDentistRepository.findAll();
+    }
+
+    public List<Dentist> saveAll(List<Dentist> dentists){
+        return iDentistRepository.saveAll(dentists);
     }
 }

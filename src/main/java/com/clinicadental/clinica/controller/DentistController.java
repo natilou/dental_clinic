@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/dentists")
@@ -17,8 +16,8 @@ public class DentistController {
     private DentistService dentistService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Dentist>> findById(@PathVariable Long id){
-       if (dentistService.findById(id).isPresent()){
+    public ResponseEntity<Dentist> findById(@PathVariable Long id){
+       if (dentistService.findById(id) != null){
            return ResponseEntity.ok(dentistService.findById(id));
        } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -53,5 +52,9 @@ public class DentistController {
     @PutMapping
     public ResponseEntity<Dentist> update(@RequestBody Dentist dentist){
         return ResponseEntity.ok(dentistService.update(dentist));
+    }
+    @PostMapping("/list")
+    public ResponseEntity<List<Dentist>> saveAll(@RequestBody List<Dentist> dentists){
+        return ResponseEntity.ok(dentistService.saveAll(dentists));
     }
 }

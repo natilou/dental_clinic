@@ -14,19 +14,20 @@ public class PatientService{
     @Autowired
     private IPatientRepository iPatientRepository;
 
-    /* public PatientService(IPatientRepository iPatientRepository) {
-        this.iPatientRepository = iPatientRepository;
-    }*/
-
     public Patient save(Patient patient){
         patient.setEntryDate(new Date());
         return iPatientRepository.save(patient);
     }
 
 
-    public Optional<Patient> findById(Long id){
-        return iPatientRepository.findById(id);
-    } // también puede ser .get() y devuelve el objeto y no un optional
+    public Patient findById(Long id){
+        Patient patient = null;
+        Optional<Patient> optionalPatient= iPatientRepository.findById(id);
+        if (optionalPatient.isPresent()){
+            patient = optionalPatient.get();
+        }
+        return patient;
+    }
 
 
     public boolean deleteById(Long id){
@@ -46,6 +47,10 @@ public class PatientService{
 
     public List<Patient> findAll(){
         return iPatientRepository.findAll();
+    }
+
+    public List<Patient> saveAll(List<Patient> patients) {
+        return iPatientRepository.saveAll(patients);
     }
 
 }

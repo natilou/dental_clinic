@@ -1,6 +1,7 @@
 package com.clinicadental.clinica.service;
 
 import com.clinicadental.clinica.model.Dentist;
+import com.clinicadental.clinica.service.DentistService;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -22,29 +23,27 @@ public class DentistTest {
     Dentist dentist2 = new Dentist(2366, "Pablo", "Perez");
     Dentist dentist3 = new Dentist(1010, "Gino", "Pascualino");
     Dentist dentist4 = new Dentist(580, "Michael", "Scott");
+    Dentist dentist5 = new Dentist(1790, "Miguel", "Angel");
     @Autowired
     DentistService dentistService = new DentistService();
 
     @Test
+    public void TestAddNewDentist(){
+        Assertions.assertNotNull(dentistService.save(dentist5));
+
+    }
+    @Test
     public void TestBuscarTodos(){
-
-        List<Dentist> dentistList = new ArrayList<>();
-        dentistList.add(dentist1);
-        dentistList.add(dentist2);
-        dentistList.add(dentist3);
-        dentistList.add(dentist4);
-
-
-        Assertions.assertEquals(dentistList.size(), dentistService.findAll().size());
+        Assertions.assertNotNull(dentistService.findAll());
     }
 
     @Test
     public void TestBuscarPorId(){
-        Assertions.assertNotNull(dentistService.findById(24L));
+        Assertions.assertNotNull(dentistService.findById(1L));
     }
 
-    /*@Test
-    public void TestEliminar(){
-        Assertions.assertTrue(odontologoService.eliminar(3L));
-    }*/
+    @Test
+    public void TestEliminar() {
+        Assertions.assertTrue(dentistService.deleteById(3L));
+    }
 }

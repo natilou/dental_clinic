@@ -14,7 +14,7 @@ public class Patient {
     private String firstName;
     private String dni;
     private Date entryDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 

@@ -6,31 +6,30 @@ import java.util.Date;
 @Entity
 @Table(name="shifts")
 public class Shift {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_sequence")
     private Long id;
-    /*@OneToOne
-    @JoinColumn(name = "id_paciente" , referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="paciente_id", referencedColumnName = "id")
     private Patient patient;
-    @OneToOne
-    @JoinColumn(name = "id_odontologo" , referencedColumnName = "id")
-    private Dentist dentist;*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="dentist_id", referencedColumnName = "id")
+    private Dentist dentist;
     private Date date;
 
     public Shift() {
     }
 
-    public Shift(Long id, Date date) {
+    public Shift(Long id, Patient patient, Dentist dentist, Date date) {
         this.id = id;
-        /*this.patient = patient;
-        this.dentist = dentist;*/
+        this.patient = patient;
+        this.dentist = dentist;
         this.date = date;
     }
 
     public Shift(Date date) {
-        /*this.patient = patient;
-        this.dentist = dentist;*/
+        this.patient = patient;
+        this.dentist = dentist;
         this.date = date;
     }
 
@@ -42,7 +41,7 @@ public class Shift {
         this.id = id;
     }
 
-    /*public Patient getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
@@ -56,7 +55,7 @@ public class Shift {
 
     public void setDentist(Dentist dentist) {
         this.dentist = dentist;
-    }*/
+    }
 
     public Date getDate() {
         return date;
@@ -70,6 +69,8 @@ public class Shift {
     public String toString() {
         return "Shift{" +
                 "id=" + id +
+                ", patient=" + patient +
+                ", dentist=" + dentist +
                 ", date=" + date +
                 '}';
     }

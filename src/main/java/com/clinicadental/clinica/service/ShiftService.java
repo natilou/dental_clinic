@@ -1,6 +1,8 @@
 package com.clinicadental.clinica.service;
 
 import com.clinicadental.clinica.model.Shift;
+import com.clinicadental.clinica.repository.IDentistRepository;
+import com.clinicadental.clinica.repository.IPatientRepository;
 import com.clinicadental.clinica.repository.IShiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +16,21 @@ public class ShiftService {
 
     @Autowired
     private IShiftRepository iShiftRepository;
+    @Autowired
+    private IPatientRepository iPatientRepository;
+    @Autowired
+    private IDentistRepository iDentistRepository;
 
 
 
     public Shift save(Shift shift) {
-        shift.setDate(new Date());
-        return iShiftRepository.save(shift);
+        Shift shiftToSave = null;
+        if(iPatientRepository.findById(shift.getPatient().getId()).isPresent() && iDentistRepository.findById(shift.getDentist().getId()).isPresent()){
+            shiftToSave = shift;
+            shiftToSave.setDate(new Date());
+            return iShiftRepository.save(shiftToSave);
+        }
+        return shiftToSave;
     }
 
 
