@@ -30,8 +30,15 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
-        patientService.deleteById(id);
+    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+        ResponseEntity<String> response;
+        if(patientService.findById(id) != null){
+            patientService.deleteById(id);
+            response = ResponseEntity.status(HttpStatus.OK).body("Patient with id " + id + " deleted");
+        }else{
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return response;
     }
 
     @GetMapping

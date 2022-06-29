@@ -30,7 +30,7 @@ public class DentistController {
         ResponseEntity<String> response;
         if (dentistService.findById(id) != null){
             dentistService.deleteById(id);
-            response = ResponseEntity.status(HttpStatus.OK).body("Deleted");
+            response = ResponseEntity.status(HttpStatus.OK).body("Dentist with id " + id + " deleted.");
         }else{
             response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
