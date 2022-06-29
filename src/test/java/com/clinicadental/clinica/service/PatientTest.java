@@ -2,8 +2,6 @@ package com.clinicadental.clinica.service;
 
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Patient;
-import com.clinicadental.clinica.service.AddressService;
-import com.clinicadental.clinica.service.PatientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,5 +49,42 @@ public class PatientTest {
     @Test
     public void TestFindById(){
         Assertions.assertNotNull(patientService.findById(25L));
+    }
+
+    @Test
+    public void TestGetId(){
+        Patient patient = new Patient("Lopez", "Isabella", "2568799", new Date(), address);
+        Patient patientSaved = patientService.save(patient);
+        Assertions.assertNotNull(patientSaved.getId());
+    }
+
+    @Test
+    public void TestGetLastName(){
+        Patient patient = patientService.findById(1L);
+        Assertions.assertNotNull(patient.getLastName());
+    }
+
+    @Test
+    public void TestGetFirstName(){
+        Patient patient = patientService.findById(1L);
+        Assertions.assertNotNull(patient.getFirstName());
+    }
+
+    @Test
+    public void TestGetDni(){
+        Patient patient = patientService.findById(1L);
+        Assertions.assertNotNull(patient.getDni());
+    }
+
+    @Test
+    public void TestGetEntryDate(){
+        Patient patient = patientService.findById(1L);
+        Assertions.assertNotNull(patient.getEntryDate());
+    }
+
+    @Test
+    public void TestGetAddress(){
+        Patient patient = patientService.findById(1L);
+        Assertions.assertNotNull(patient.getAddress());
     }
 }

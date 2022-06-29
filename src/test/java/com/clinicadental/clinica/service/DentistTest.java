@@ -1,5 +1,6 @@
 package com.clinicadental.clinica.service;
 
+import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.service.DentistService;
 import org.junit.FixMethodOrder;
@@ -45,5 +46,30 @@ public class DentistTest {
     @Test
     public void TestDeleteById() {
         Assertions.assertTrue(dentistService.deleteById(3L));
+    }
+
+    @Test
+    public void TestGetFirstName(){
+        Dentist dentist = dentistService.findById(1L);
+        Assertions.assertNotNull(dentist.getFirstName());
+    }
+
+    @Test
+    public void TestGetLastName(){
+        Dentist dentist = dentistService.findById(1L);
+        Assertions.assertNotNull(dentist.getLastName());
+    }
+
+    @Test
+    public void TestGetRegistrationNumber(){
+        Dentist dentist = dentistService.findById(1L);
+        Assertions.assertNotNull(dentist.getRegistrationNumber());
+    }
+
+    @Test
+    public void TestGetId(){
+        Dentist dentist = new Dentist(15899, "Isabella", "Lopez");
+        Dentist dentistSaved = dentistService.save(dentist);
+        Assertions.assertNotNull(dentistSaved.getId());
     }
 }

@@ -34,6 +34,37 @@ public class AddressTest {
     public void TestFindById(){
         Assertions.assertNotNull(addressService.findById(21L));
     }
+
+    @Test
+    public void TestGetId(){
+        Address address = new Address("Brooklyn", 99, "Brooklyn", "New York");
+        Address addressSaved = addressService.save(address);
+        Assertions.assertNotNull(addressSaved.getId());
+    }
+    @Test
+    public void TestGetStreet(){
+        Address address = addressService.findById(2L).get();
+        Assertions.assertNotNull(address.getStreet());
+    }
+
+    @Test
+    public void TestGetNumber(){
+        Address address = addressService.findById(2L).get();
+        Assertions.assertNotNull(address.getNumber());
+    }
+
+    @Test
+    public void TestGetLocation(){
+        Address address = addressService.findById(2L).get();
+        Assertions.assertNotNull(address.getLocation());
+    }
+
+    @Test
+    public void TestGetProvince(){
+        Address address = addressService.findById(2L).get();
+        Assertions.assertNotNull(address.getProvince());
+    }
+
 }
 
 
