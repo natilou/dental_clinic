@@ -1,5 +1,6 @@
 package com.clinicadental.clinica.service;
 
+import com.clinicadental.clinica.model.Patient;
 import com.clinicadental.clinica.model.Shift;
 import com.clinicadental.clinica.repository.IDentistRepository;
 import com.clinicadental.clinica.repository.IPatientRepository;
@@ -45,8 +46,13 @@ public class ShiftService {
     }
 
 
-    public Optional<Shift> findById(Long id) {
-        return iShiftRepository.findById(id);
+    public Shift findById(Long id) {
+        Shift shift = null;
+        Optional<Shift> optionalShift = iShiftRepository.findById(id);
+        if (optionalShift.isPresent()){
+            shift = optionalShift.get();
+        }
+        return shift;
     }
 
 

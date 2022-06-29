@@ -17,9 +17,10 @@ public class DentistController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Dentist> findById(@PathVariable Long id){
-       if (dentistService.findById(id) != null){
-           return ResponseEntity.ok(dentistService.findById(id));
-       } else{
+        Dentist dentist = dentistService.findById(id);
+        if (dentist != null){
+           return ResponseEntity.ok(dentist);
+        } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }

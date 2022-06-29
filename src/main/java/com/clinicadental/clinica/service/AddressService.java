@@ -21,8 +21,15 @@ public class AddressService {
     }
 
 
-    public void deleteById(Long id){
-        iAddressRepository.deleteById(id);
+    public boolean deleteById(Long id){
+        boolean isDeleted = false;
+        try{
+            iAddressRepository.deleteById(id);
+            isDeleted = true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return isDeleted;
     }
 
 

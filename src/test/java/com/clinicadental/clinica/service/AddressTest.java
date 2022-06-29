@@ -25,12 +25,6 @@ public class AddressTest {
         Assertions.assertNotNull(addressService.save(address));
     }
 
-    /*@Test
-    public void testEliminar() {
-        addressService.deleteById(26L);
-        Assertions.assertNull(addressService.findById(26L));
-    }*/
-
     @Test
     public void TestFindAll(){
         Assertions.assertNotNull(addressService.findAll());

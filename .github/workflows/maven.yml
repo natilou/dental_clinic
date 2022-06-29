@@ -25,4 +25,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn -B test --file pom.xml
+      run: mvn test jacoco:report
+    - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3

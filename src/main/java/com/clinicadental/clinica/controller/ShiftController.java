@@ -22,9 +22,10 @@ public class ShiftController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Shift>> findById(@PathVariable Long id){
-        if(shiftService.findById(id).isPresent()){
-            return ResponseEntity.ok(shiftService.findById(id));
+    public ResponseEntity<Shift> findById(@PathVariable Long id){
+        Shift shift = shiftService.findById(id);
+        if(shift != null){
+            return ResponseEntity.ok(shift);
         } else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
