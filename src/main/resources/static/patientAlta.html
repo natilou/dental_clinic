@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/patient-js/post_patient.js"></script>
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/patientList.html">List Patient</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-sm-7" style="background-color:#e6fffa; padding:10px; border-radius:3px">
+            <h3>Add patient</h3>
+            <form id="add_new_patient">
+                <div class="form-group">
+                    <label class="control-label" for="nombre-paciente">Fist Name:</label>
+                    <input type="text" class="form-control" id="nombre-paciente"
+                           placeholder="First name"
+                           name="nombre" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="apellido-paciente">Last Name:</label>
+                    <input type="text" class="form-control" id="apellido-paciente"
+                           placeholder="Last name"
+                           name="apellido" required></input>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="dni">DNI:</label>
+                    <input type="text" class="form-control" id="dni"
+                           placeholder="DNI"
+                           name="dni" required></input>
+                </div>
+                <div>
+                    <h5>Address</h5>
+                    <div class="form-group">
+                        <label class="control-label" for="street">Street:</label>
+                        <input type="text" class="form-control" id="street"
+                               placeholder="Street"
+                               name="street" required></input>
+                        <label class="control-label" for="number-street">Number:</label>
+                        <input type="number" class="form-control" id="number-street"
+                               placeholder="Number"
+                               name="number" required></input>
+                        <label class="control-label" for="location">Location:</label>
+                        <input type="text" class="form-control" id="location"
+                               placeholder="Location"
+                               name="location" required></input>
+                        <label class="control-label" for="province">Province:</label>
+                        <input type="text" class="form-control" id="province"
+                               placeholder="province"
+                               name="province" required></input>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-danger"
+                        id="btn-add-new-paciente">Save</button>
+            </form>
+            <div id="response" style="display:none; margin-top:10px">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

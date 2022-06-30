@@ -1,7 +1,9 @@
-package com.clinicadental.clinica.service;
+package com.clinicadental;
 
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Patient;
+import com.clinicadental.clinica.service.AddressService;
+import com.clinicadental.clinica.service.PatientService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.FixMethodOrder;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class PatientTest {
 
     Address address = new Address("Jacaranda", 709, "Las Heras", "Mendoza");

@@ -5,22 +5,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/post_dentist.js"></script>
+    <script type="text/javascript" src="/js/dentist-js/post_dentist.js"></script>
+    <script type="text/javascript" src="/js/patient-js/post_patient.js"></script>
 </head>
 
 <body>
 <div class="container">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="/odontologoList.html">Dentist list</a>
-            <a class="nav-link" href="/odontologoAlta.html">Dentist registration</a>
-        </li>
-    </ul>
+    <div style="margin-top:2rem;">
+        <div class="row" style="display:flex; justify-content:center">
+                <img src="./img/logo.png" alt="">
 
-    <hr>
+        </div>
+        <div class="row" style="display:flex; justify-content:center">
+                <h1>Shift management system</h1>
+        </div>
+    </div>
+    <div class="list-group" style="margin-top:2rem;">
+        <a href="/odontologoList.html" class="list-group-item list-group-item-action">Dentist list</a>
+        <a href="/odontologoAlta.html" class="list-group-item list-group-item-action">Dentist registration</a>
+        <a href="/patientList.html" class="list-group-item list-group-item-action">Patient list</a>
+        <a href="/patientAlta.html" class="list-group-item list-group-item-action">Patient registration</a>
+    </div>
+
 </div>
 </body>
 

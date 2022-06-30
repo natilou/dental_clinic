@@ -1,9 +1,13 @@
-package com.clinicadental.clinica.service;
+package com.clinicadental;
 
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.model.Patient;
 import com.clinicadental.clinica.model.Shift;
+import com.clinicadental.clinica.service.AddressService;
+import com.clinicadental.clinica.service.DentistService;
+import com.clinicadental.clinica.service.PatientService;
+import com.clinicadental.clinica.service.ShiftService;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -12,11 +16,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class ShiftTest {
     @Autowired
     ShiftService shiftService;

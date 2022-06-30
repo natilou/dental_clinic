@@ -1,4 +1,4 @@
-package com.clinicadental.clinica.service;
+package com.clinicadental;
 
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Dentist;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class DentistTest {
 
     Dentist dentist1 = new Dentist(1522, "Isabella", "Lopez");
