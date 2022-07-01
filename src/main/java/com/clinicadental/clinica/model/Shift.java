@@ -1,5 +1,8 @@
 package com.clinicadental.clinica.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,10 +13,10 @@ public class Shift {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_sequence")
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="paciente_id", referencedColumnName = "id")
+    @JoinColumn(name="patient_id")
     private Patient patient;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="dentist_id", referencedColumnName = "id")
+    @JoinColumn(name="dentist_id")
     private Dentist dentist;
     private Date date;
 

@@ -52,7 +52,11 @@ public class DentistController {
 
     @PutMapping
     public ResponseEntity<Dentist> update(@RequestBody Dentist dentist){
-        return ResponseEntity.ok(dentistService.update(dentist));
+        if(dentistService.findById(dentist.getId()) != null) {
+            return ResponseEntity.ok(dentistService.update(dentist));
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
     @PostMapping("/list")
     public ResponseEntity<List<Dentist>> saveAll(@RequestBody List<Dentist> dentists){

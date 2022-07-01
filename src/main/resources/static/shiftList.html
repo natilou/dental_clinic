@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Dental Clinic</title>
+    <title>Shift list</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/dentist-js/delete_dentist.js"></script>
-    <script type="text/javascript" src="/js/dentist-js/get_dentist.js"></script>
-    <script type="text/javascript" src="/js/dentist-js/update_dentist.js"></script>
+    <script type="text/javascript" src="/js/shift-js/delete_shift.js"></script>
+    <script type="text/javascript" src="/js/shift-js/get_shift.js"></script>
+<!--    <script type="text/javascript" src="/js/shift-js/update_shift.js"></script>-->
 
 </head>
 <body>
@@ -44,21 +44,21 @@
 
 <div class="container">
 
-    <div id="div_odontologo_table">
-        <h1>Dentists</h1>
-        <div class="row col-8 table-responsive">
-            <table id="odontologoTable" class="table table-striped">
+    <div id="div_shift_table">
+        <h1>Shifts</h1>
+        <div class="row col-10 table-responsive">
+            <table id="shiftTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th></th>
                     <th>Id</th>
-                    <th>Fist Name</th>
-                    <th>Last Name</th>
-                    <th>Reg. Number</th>
+                    <th>Date</th>
+                    <th>Patient</th>
+                    <th>Dentist</th>
                     <th></th>
                 </tr>
                 </thead>
-                <tbody id="odontologoTableBody">
+                <tbody id="shiftTableBody">
 
                 </tbody>
             </table>
@@ -67,23 +67,23 @@
 
     <div class="row">
         <div class="col-8" style="display: none; background-color:#57b6cf; padding:10px; border-radius:3px"
-             id="div_odontologo_updating">
-            <form id="update_odontologo_form">
+             id="div_shift_updating">
+            <form id="update_shift_form">
                 <div class="form-group">
                     <label >Id:</label>
-                    <input type="text" class="form-control" id="odontologo_id_update" readonly>
+                    <input type="text" class="form-control" id="shift_id_update" readonly>
                 </div>
                 <div class="form-group">
-                    <label >Nombre:</label>
-                    <input type="text" class="form-control" placeholder="nombre" id="nombre-update">
+                    <label>Patient:</label>
+                    <input type="text" class="form-control" placeholder="Patient" id="shift-patient-update">
                 </div>
                 <div class="form-group">
-                    <label >Apellido:</label>
-                    <input type="text" class="form-control" placeholder="apellido" id="apellido-update">
+                    <label >Dentist:</label>
+                    <input type="text" class="form-control" placeholder="Dentist" id="shift-dentist-update">
                 </div>
                 <div class="form-group">
-                    <label >Matricula N°:</label>
-                    <input type="text" class="form-control" placeholder="matricula" id="matricula-update">
+                    <label >Date:</label>
+                    <input type="date" class="form-control" placeholder="Date" id="shift-date-update">
                 </div>
 
 

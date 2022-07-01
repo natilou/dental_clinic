@@ -44,7 +44,6 @@ public class ShiftController {
 
     }
 
-
     @GetMapping
     public ResponseEntity<List<Shift>> findAll(){
         return ResponseEntity.ok(shiftService.findAll());
@@ -58,6 +57,11 @@ public class ShiftController {
 
     @PutMapping
     public ResponseEntity<Shift> update(@RequestBody Shift shift){
-        return ResponseEntity.ok(shiftService.update(shift));
+        if(shiftService.findById(shift.getId()) != null){
+            return ResponseEntity.ok(shiftService.update(shift));
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }

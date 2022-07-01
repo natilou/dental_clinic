@@ -53,7 +53,11 @@ public class PatientController {
 
     @PutMapping
     public ResponseEntity<Patient> update(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.update(patient));
+        if(patientService.findById(patient.getId()) != null) {
+            return ResponseEntity.ok(patientService.update(patient));
+        } else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping("/list")
