@@ -16,12 +16,12 @@ public class AddressService {
         return iAddressRepository.save(address);
     }
 
-    public Optional<Address> findById(Long id){
+    public Optional<Address> findById(Integer id){
         return iAddressRepository.findById(id);
     }
 
 
-    public boolean deleteById(Long id){
+    public boolean deleteById(Integer id){
         boolean isDeleted = false;
         try{
             iAddressRepository.deleteById(id);

@@ -1,17 +1,14 @@
 package com.clinicadental.clinica.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="shifts")
-public class Shift {
+@Table(name="appointments")
+public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_sequence")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_sequence")
+    private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="patient_id")
     private Patient patient;
@@ -20,27 +17,27 @@ public class Shift {
     private Dentist dentist;
     private Date date;
 
-    public Shift() {
+    public Appointment() {
     }
 
-    public Shift(Long id, Patient patient, Dentist dentist, Date date) {
+    public Appointment(Integer id, Patient patient, Dentist dentist, Date date) {
         this.id = id;
         this.patient = patient;
         this.dentist = dentist;
         this.date = date;
     }
 
-    public Shift(Patient patient, Dentist dentist, Date date) {
+    public Appointment(Patient patient, Dentist dentist, Date date) {
         this.patient = patient;
         this.dentist = dentist;
         this.date = date;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,7 +67,7 @@ public class Shift {
 
     @Override
     public String toString() {
-        return "Shift{" +
+        return "Appointment{" +
                 "id=" + id +
                 ", patient=" + patient +
                 ", dentist=" + dentist +

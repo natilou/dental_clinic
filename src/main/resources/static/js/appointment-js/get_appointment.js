@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
 
       //con fetch invocamos a la API de odontologos con el método GET
       //nos devolverá un JSON con una colección de odontologos
-      const url = '/shifts';
+      const url = '/appointments';
       const settings = {
         method: 'GET'
       }
@@ -12,19 +12,19 @@ window.addEventListener('load', function () {
       .then(response => response.json())
       .then(data => {
          //recorremos la colección de odontologos del JSON
-         for(shift of data){
+         for(appointment of data){
             //por cada odontologo armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos el odontologo
-            var table = document.getElementById("shiftTable");
-            var shiftRow =table.insertRow();
-            let tr_id = 'tr_' + shift.id;
-            shiftRow.id = tr_id;
+            var table = document.getElementById("appointmentTable");
+            var appointmentRow =table.insertRow();
+            let tr_id = 'tr_' + appointment.id;
+            appointmentRow.id = tr_id;
 
             let deleteButton = '<button' +
 
-                               ' id=' + '\"' + 'btn_delete_' + shift.id + '\"' +
+                               ' id=' + '\"' + 'btn_delete_' + appointment.id + '\"' +
 
-                               ' type="button" onclick="deleteBy('+ shift.id+')"' +
+                               ' type="button" onclick="deleteBy('+ appointment.id+')"' +
 
                                'class="btn btn-danger btn_delete">' +
 
@@ -34,9 +34,9 @@ window.addEventListener('load', function () {
 
             let updateButton = '<button' +
 
-                               ' id=' + '\"' + 'btn_id_' + shift.id + '\"' +
+                               ' id=' + '\"' + 'btn_id_' + appointment.id + '\"' +
 
-                               ' type="button" onclick="findBy('+shift.id+')"' +
+                               ' type="button" onclick="findBy('+appointment.id+')"' +
 
                                ' class="btn btn-info btn_id">' +
 
@@ -48,12 +48,12 @@ window.addEventListener('load', function () {
             //como primer columna pondremos el boton modificar
             //luego los datos del odontologo
             //como ultima columna el boton eliminar
-            let date_shift = new Date(shift.date)
-            shiftRow.innerHTML = '<td>' + updateButton + '</td>'+
-                    '<td class=\"td_id\">' + shift.id + '</td>' +
-                    '<td class=\"td_date\">' + date_shift.toISOString().split('T')[0] + " " + date_shift.toISOString().split('T')[1].slice(0, 5) + '</td>' +
-                    '<td class=\"td_patient\">' + shift.patient.firstName.toUpperCase() +  " " + shift.patient.lastName.toUpperCase() +'</td>' +
-                    '<td class=\"td_dentist\">' + shift.dentist.firstName.toUpperCase() +  " " + shift.dentist.lastName.toUpperCase() + '</td>'+
+            let date_appointment = new Date(appointment.date)
+            appointmentRow.innerHTML = '<td>' + updateButton + '</td>'+
+                    '<td class=\"td_id\">' + appointment.id + '</td>' +
+                    '<td class=\"td_date\">' + date_appointment.toISOString().split('T')[0] + " " + date_appointment.toISOString().split('T')[1].slice(0, 5) + '</td>' +
+                    '<td class=\"td_patient\">' + appointment.patient.firstName.toUpperCase() +  " " + appointment.patient.lastName.toUpperCase() +'</td>' +
+                    '<td class=\"td_dentist\">' + appointment.dentist.firstName.toUpperCase() +  " " + appointment.dentist.lastName.toUpperCase() + '</td>'+
                     '<td>' + deleteButton + '</td>';
         };
 
@@ -63,7 +63,7 @@ window.addEventListener('load', function () {
 
          let pathname = window.location.pathname;
 
-         if (pathname == "/shiftList.html") {
+         if (pathname == "/appointmentList.html") {
 
              document.querySelector(".nav .nav-item a:last").addClass("active");
 

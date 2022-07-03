@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 		com.clinicadental.AddressTest.class,
 		com.clinicadental.DentistTest.class,
 		com.clinicadental.PatientTest.class,
-		com.clinicadental.ShiftTest.class
+		com.clinicadental.AppointmentTest.class
 })
 @SpringBootTest
 class ClinicaDentalApplicationTests {

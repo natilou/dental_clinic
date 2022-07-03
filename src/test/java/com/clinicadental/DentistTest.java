@@ -1,5 +1,6 @@
 package com.clinicadental;
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.service.DentistService;
@@ -42,29 +43,29 @@ public class DentistTest {
 
     @Test
     public void TestFindById(){
-        Assertions.assertNotNull(dentistService.findById(1L));
+        Assertions.assertNotNull(dentistService.findById(1));
     }
 
     @Test
-    public void TestDeleteById() {
-        Assertions.assertTrue(dentistService.deleteById(3L));
+    public void TestDeleteById() throws ResourceNotFoundException {
+        Assertions.assertTrue(dentistService.deleteById(3));
     }
 
     @Test
     public void TestGetFirstName(){
-        Dentist dentist = dentistService.findById(1L);
+        Dentist dentist = dentistService.findById(1);
         Assertions.assertNotNull(dentist.getFirstName());
     }
 
     @Test
     public void TestGetLastName(){
-        Dentist dentist = dentistService.findById(1L);
+        Dentist dentist = dentistService.findById(1);
         Assertions.assertNotNull(dentist.getLastName());
     }
 
     @Test
     public void TestGetRegistrationNumber(){
-        Dentist dentist = dentistService.findById(1L);
+        Dentist dentist = dentistService.findById(1);
         Assertions.assertNotNull(dentist.getRegistrationNumber());
     }
 

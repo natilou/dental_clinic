@@ -8,7 +8,7 @@ public class Dentist {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dentist_sequence")
     @Column(name = "id")
-    private Long id;
+    private Integer id;
     private int registrationNumber;
     private String firstName;
     private String lastName;
@@ -23,18 +23,18 @@ public class Dentist {
         this.lastName = lastName;
     }
 
-    public Dentist(Long id, int registrationNumber, String firstName, String apellido) {
+    public Dentist(Integer id, int registrationNumber, String firstName, String apellido) {
         this.id = id;
         this.registrationNumber = registrationNumber;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

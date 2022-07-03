@@ -1,9 +1,9 @@
 package com.clinicadental.clinica.controller;
 
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Patient;
 import com.clinicadental.clinica.service.PatientService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findById(@PathVariable Long id) {
+    public ResponseEntity<Patient> findById(@PathVariable Integer id) {
         Patient patient = patientService.findById(id);
         if(patient != null){
             return ResponseEntity.ok(patient);
@@ -30,7 +30,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
         ResponseEntity<String> response;
         if(patientService.findById(id) != null){
             patientService.deleteById(id);

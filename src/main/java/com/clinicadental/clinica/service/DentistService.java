@@ -1,5 +1,6 @@
 package com.clinicadental.clinica.service;
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.repository.IDentistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class DentistService {
         return iDentistRepository.save(dentist);
     }
 
-    public Dentist  findById(Long id){
+    public Dentist  findById(Integer id){
         Dentist dentist = null;
         Optional<Dentist> optionalDentist = iDentistRepository.findById(id);
         if (optionalDentist.isPresent()){
@@ -27,15 +28,12 @@ public class DentistService {
         return dentist;
     }
 
-    public boolean deleteById(Long id){
-        boolean result = false;
-        try{
-            iDentistRepository.deleteById(id);
-            result = true;
-        } catch (Exception e){
-            e.printStackTrace();
+    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+        if(this.findById(id) == null) {
+            throw new ResourceNotFoundException("Dentist with id " + id + " does not exist.");
         }
-        return result;
+        iDentistRepository.deleteById(id);
+        return true;
     }
 
     public Dentist update(Dentist dentist){

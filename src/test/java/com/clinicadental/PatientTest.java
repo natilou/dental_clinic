@@ -1,5 +1,6 @@
 package com.clinicadental;
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Patient;
 import com.clinicadental.clinica.service.AddressService;
@@ -41,9 +42,9 @@ public class PatientTest {
     }
 
    @Test
-    public void TestDeleteById(){
-       patientService.deleteById(1L);
-        Assertions.assertTrue(patientService.findById(1L)==null);
+    public void TestDeleteById() throws ResourceNotFoundException {
+       patientService.deleteById(1);
+        Assertions.assertTrue(patientService.findById(1)==null);
     }
     @Test
     public void TestFindAll(){
@@ -52,7 +53,7 @@ public class PatientTest {
 
     @Test
     public void TestFindById(){
-        Assertions.assertNotNull(patientService.findById(25L));
+        Assertions.assertNotNull(patientService.findById(25));
     }
 
     @Test
@@ -64,31 +65,31 @@ public class PatientTest {
 
     @Test
     public void TestGetLastName(){
-        Patient patient = patientService.findById(1L);
+        Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getLastName());
     }
 
     @Test
     public void TestGetFirstName(){
-        Patient patient = patientService.findById(1L);
+        Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getFirstName());
     }
 
     @Test
     public void TestGetDni(){
-        Patient patient = patientService.findById(1L);
+        Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getDni());
     }
 
     @Test
     public void TestGetEntryDate(){
-        Patient patient = patientService.findById(1L);
+        Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getEntryDate());
     }
 
     @Test
     public void TestGetAddress(){
-        Patient patient = patientService.findById(1L);
+        Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getAddress());
     }
 }

@@ -1,4 +1,5 @@
 package com.clinicadental.clinica.controller;
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.service.DentistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class DentistController {
     private DentistService dentistService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dentist> findById(@PathVariable Long id){
+    public ResponseEntity<Dentist> findById(@PathVariable Integer id){
         Dentist dentist = dentistService.findById(id);
         if (dentist != null){
            return ResponseEntity.ok(dentist);
@@ -26,7 +27,7 @@ public class DentistController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id){
+    public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
         ResponseEntity<String> response;
         if (dentistService.findById(id) != null){
             dentistService.deleteById(id);
@@ -62,4 +63,9 @@ public class DentistController {
     public ResponseEntity<List<Dentist>> saveAll(@RequestBody List<Dentist> dentists){
         return ResponseEntity.ok(dentistService.saveAll(dentists));
     }
+
+  /*  @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity<String> manageErrorNotFound(ResourceNotFoundException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }*/
 }

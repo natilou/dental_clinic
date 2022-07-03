@@ -34,7 +34,7 @@ public class AddressTest {
 
     @Test
     public void TestFindById(){
-        Assertions.assertNotNull(addressService.findById(21L));
+        Assertions.assertNotNull(addressService.findById(21));
     }
 
     @Test
@@ -45,25 +45,25 @@ public class AddressTest {
     }
     @Test
     public void TestGetStreet(){
-        Address address = addressService.findById(2L).get();
+        Address address = addressService.findById(2).get();
         Assertions.assertNotNull(address.getStreet());
     }
 
     @Test
     public void TestGetNumber(){
-        Address address = addressService.findById(2L).get();
+        Address address = addressService.findById(2).get();
         Assertions.assertNotNull(address.getNumber());
     }
 
     @Test
     public void TestGetLocation(){
-        Address address = addressService.findById(2L).get();
+        Address address = addressService.findById(2).get();
         Assertions.assertNotNull(address.getLocation());
     }
 
     @Test
     public void TestGetProvince(){
-        Address address = addressService.findById(2L).get();
+        Address address = addressService.findById(2).get();
         Assertions.assertNotNull(address.getProvince());
     }
 
