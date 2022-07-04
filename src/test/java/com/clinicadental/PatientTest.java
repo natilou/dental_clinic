@@ -52,7 +52,7 @@ public class PatientTest {
     }
 
     @Test
-    public void TestFindById(){
+    public void TestFindById() throws ResourceNotFoundException {
         Assertions.assertNotNull(patientService.findById(25));
     }
 
@@ -64,31 +64,31 @@ public class PatientTest {
     }
 
     @Test
-    public void TestGetLastName(){
+    public void TestGetLastName() throws ResourceNotFoundException {
         Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getLastName());
     }
 
     @Test
-    public void TestGetFirstName(){
+    public void TestGetFirstName() throws ResourceNotFoundException {
         Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getFirstName());
     }
 
     @Test
-    public void TestGetDni(){
+    public void TestGetDni() throws ResourceNotFoundException {
         Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getDni());
     }
 
     @Test
-    public void TestGetEntryDate(){
+    public void TestGetEntryDate() throws ResourceNotFoundException {
         Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getEntryDate());
     }
 
     @Test
-    public void TestGetAddress(){
+    public void TestGetAddress() throws ResourceNotFoundException {
         Patient patient = patientService.findById(1);
         Assertions.assertNotNull(patient.getAddress());
     }

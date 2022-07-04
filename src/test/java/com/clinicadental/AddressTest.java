@@ -1,7 +1,9 @@
 package com.clinicadental;
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.service.AddressService;
+import lombok.SneakyThrows;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
@@ -33,7 +35,7 @@ public class AddressTest {
     }
 
     @Test
-    public void TestFindById(){
+    public void TestFindById() throws ResourceNotFoundException {
         Assertions.assertNotNull(addressService.findById(21));
     }
 
@@ -44,26 +46,27 @@ public class AddressTest {
         Assertions.assertNotNull(addressSaved.getId());
     }
     @Test
-    public void TestGetStreet(){
-        Address address = addressService.findById(2).get();
+    public void TestGetStreet() throws ResourceNotFoundException {
+        Address address = addressService.findById(2);
         Assertions.assertNotNull(address.getStreet());
     }
 
     @Test
-    public void TestGetNumber(){
-        Address address = addressService.findById(2).get();
+    public void TestGetNumber() throws ResourceNotFoundException {
+        Address address = addressService.findById(2);
         Assertions.assertNotNull(address.getNumber());
     }
 
     @Test
-    public void TestGetLocation(){
-        Address address = addressService.findById(2).get();
+    public void TestGetLocation() throws ResourceNotFoundException {
+        Address address = addressService.findById(2);
         Assertions.assertNotNull(address.getLocation());
     }
 
+    @SneakyThrows
     @Test
     public void TestGetProvince(){
-        Address address = addressService.findById(2).get();
+        Address address = addressService.findById(2);
         Assertions.assertNotNull(address.getProvince());
     }
 
