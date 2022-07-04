@@ -17,28 +17,16 @@ public class DentistController {
     private DentistService dentistService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dentist> findById(@PathVariable Integer id){
-        Dentist dentist = dentistService.findById(id);
-        if (dentist != null){
-           return ResponseEntity.ok(dentist);
-        } else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<Dentist> findById(@PathVariable Integer id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(dentistService.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
-        ResponseEntity<String> response;
-        if (dentistService.findById(id) != null){
-            dentistService.deleteById(id);
-            response = ResponseEntity.status(HttpStatus.OK).body("Dentist with id " + id + " deleted.");
-        }else{
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+        dentistService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Dentist with id " + id + " deleted.");
 
     }
-
 
     @GetMapping
     public ResponseEntity<List<Dentist>> findAll(){
@@ -52,20 +40,11 @@ public class DentistController {
     }
 
     @PutMapping
-    public ResponseEntity<Dentist> update(@RequestBody Dentist dentist){
-        if(dentistService.findById(dentist.getId()) != null) {
-            return ResponseEntity.ok(dentistService.update(dentist));
-        }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<Dentist> update(@RequestBody Dentist dentist) throws ResourceNotFoundException {
+        return ResponseEntity.ok(dentistService.update(dentist));
     }
     @PostMapping("/list")
     public ResponseEntity<List<Dentist>> saveAll(@RequestBody List<Dentist> dentists){
         return ResponseEntity.ok(dentistService.saveAll(dentists));
     }
-
-  /*  @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<String> manageErrorNotFound(ResourceNotFoundException e){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }*/
 }

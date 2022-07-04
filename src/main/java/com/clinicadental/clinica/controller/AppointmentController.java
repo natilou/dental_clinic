@@ -24,12 +24,7 @@ public class AppointmentController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Appointment> findById(@PathVariable Integer id) throws ResourceNotFoundException {
-        Appointment appointment = appointmentService.findById(id);
-        if(appointment != null){
-            return ResponseEntity.ok(appointment);
-        } else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok(appointmentService.findById(id));
     }
 
     @DeleteMapping("/{id}")

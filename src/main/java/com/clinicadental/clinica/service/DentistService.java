@@ -15,17 +15,15 @@ public class DentistService {
 
 
     public Dentist save(Dentist dentist){
-
         return iDentistRepository.save(dentist);
     }
 
-    public Dentist  findById(Integer id){
-        Dentist dentist = null;
+    public Dentist findById(Integer id) throws ResourceNotFoundException {
         Optional<Dentist> optionalDentist = iDentistRepository.findById(id);
-        if (optionalDentist.isPresent()){
-            dentist = optionalDentist.get();
+        if(optionalDentist.isEmpty()){
+            throw new ResourceNotFoundException("Dentist with id " + id + " does not exist.");
         }
-        return dentist;
+        return optionalDentist.get();
     }
 
     public boolean deleteById(Integer id) throws ResourceNotFoundException {
@@ -36,8 +34,11 @@ public class DentistService {
         return true;
     }
 
-    public Dentist update(Dentist dentist){
-        return iDentistRepository.save(dentist);
+    public Dentist update(Dentist dentist) throws ResourceNotFoundException {
+        if(this.findById(dentist.getId()) == null){
+            throw new ResourceNotFoundException("Dentist with id " + dentist.getId() + " does not exist.");
+        }
+        return this.save(dentist);
     }
 
     public List<Dentist> findAll(){

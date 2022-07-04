@@ -20,25 +20,14 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findById(@PathVariable Integer id) {
-        Patient patient = patientService.findById(id);
-        if(patient != null){
-            return ResponseEntity.ok(patient);
-        } else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<Patient> findById(@PathVariable Integer id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(patientService.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
-        ResponseEntity<String> response;
-        if(patientService.findById(id) != null){
-            patientService.deleteById(id);
-            response = ResponseEntity.status(HttpStatus.OK).body("Patient with id " + id + " deleted");
-        }else{
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return response;
+        patientService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Patient with id " + id + " deleted");
     }
 
     @GetMapping
@@ -52,12 +41,8 @@ public class PatientController {
     }
 
     @PutMapping
-    public ResponseEntity<Patient> update(@RequestBody Patient patient) {
-        if(patientService.findById(patient.getId()) != null) {
-            return ResponseEntity.ok(patientService.update(patient));
-        } else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public ResponseEntity<Patient> update(@RequestBody Patient patient) throws ResourceNotFoundException {
+        return ResponseEntity.ok(patientService.update(patient));
     }
 
     @PostMapping("/list")

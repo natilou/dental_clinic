@@ -22,13 +22,12 @@ public class PatientService{
     }
 
 
-    public Patient findById(Integer id){
-        Patient patient = null;
+    public Patient findById(Integer id) throws ResourceNotFoundException {
         Optional<Patient> optionalPatient= iPatientRepository.findById(id);
-        if (optionalPatient.isPresent()){
-            patient = optionalPatient.get();
+        if (optionalPatient.isEmpty()){
+            throw new ResourceNotFoundException("Patient with id " + id + " does not exist.");
         }
-        return patient;
+        return optionalPatient.get();
     }
 
 
@@ -40,8 +39,11 @@ public class PatientService{
         return true;
     }
 
-    public Patient update(Patient patient){
-        return iPatientRepository.save(patient);
+    public Patient update(Patient patient) throws ResourceNotFoundException {
+        if(this.findById(patient.getId()) == null){
+            throw new ResourceNotFoundException("Patient with id " + patient.getId() + " does not exist.");
+        }
+        return this.save(patient);
     }
 
     public List<Patient> findAll(){

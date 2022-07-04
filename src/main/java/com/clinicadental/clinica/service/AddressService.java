@@ -1,5 +1,6 @@
 package com.clinicadental.clinica.service;
 
+import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.repository.IAddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,21 @@ public class AddressService {
         return iAddressRepository.save(address);
     }
 
-    public Optional<Address> findById(Integer id){
-        return iAddressRepository.findById(id);
+    public Address findById(Integer id) throws ResourceNotFoundException {
+        Optional<Address> optionalAddress = iAddressRepository.findById(id);
+        if(optionalAddress.isEmpty()){
+            throw new ResourceNotFoundException("Address with id " + id + " does not exist.");
+        }
+        return optionalAddress.get();
     }
 
 
-    public boolean deleteById(Integer id){
-        boolean isDeleted = false;
-        try{
-            iAddressRepository.deleteById(id);
-            isDeleted = true;
-        } catch (Exception e){
-            e.printStackTrace();
+    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+        if(this.findById(id) == null) {
+            throw new ResourceNotFoundException("Address with id " + id + " does not exist.");
         }
-        return isDeleted;
+        iAddressRepository.deleteById(id);
+        return true;
     }
 
 
