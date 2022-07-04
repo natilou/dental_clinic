@@ -31,7 +31,7 @@ public class AppointmentService {
         } else if (iDentistRepository.findById(appointment.getDentist().getId()).isEmpty()){
             throw new BadRequestException("Dentist does not exist");
         }
-        appointment.setDate(new Date());
+        //appointment.setDate(new Date());
         return iAppointmentRepository.save(appointment);
     }
 

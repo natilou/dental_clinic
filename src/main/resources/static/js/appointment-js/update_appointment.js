@@ -9,7 +9,7 @@ window.addEventListener('load', function () {
     let select_patient = document.querySelector('#select-patient');
     let patient_appointment = select_patient.options[select_patient.selectedIndex].value;
     let select_dentist = document.querySelector('#select-dentist');
-    let dentist_appointment = select_patient.options[select_dentist.selectedIndex].value
+    let dentist_appointment = select_dentist.options[select_dentist.selectedIndex].value
     const formData = {
       id: appointmentId,
       patient: {
