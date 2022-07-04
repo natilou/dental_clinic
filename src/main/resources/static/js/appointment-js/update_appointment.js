@@ -14,15 +14,9 @@ window.addEventListener('load', function () {
       id: appointmentId,
       patient: {
             id: patient_appointment,
-//            lastName: patient_appointment.lastName,
-//            firstName: patient_appointment.firstName,
-//            entryDate: patient_appointment.entryDate,
       },
       dentist: {
             id: dentist_appointment,
-//            registrationNumber: dentist_appointment.registrationNumber,
-//            firstName: dentist_appointment.firstName,
-//            lastName: dentist_appointment.lastName,
       },
       date: document.querySelector("#appointment-date-update").value
     };
@@ -51,10 +45,11 @@ function findBy(id) {
   .then(data => {
     let appointment = data;
     document.querySelector('#appointment_id_update').value = appointment.id;
-    document.querySelector("#appointment-date-update").value = appointment.date;
+    document.querySelector("#appointment-date-update").value = appointment.date.toISOString().split('T')[0];
     document.querySelector('#div_appointment_updating').style.display = "block";
+    return appointment;
   })
-  .then(() => {
+  .then((appointment) => {
     const url = '/patients';
     const settings = {
     method: 'GET'
@@ -62,16 +57,17 @@ function findBy(id) {
 
     fetch(url,settings)
     .then(response => response.json())
-    .then(data => {
+    .then((data) => {
     const selectPatient = document.querySelector("#select-patient");
 
       for(patient of data){
-        selectPatient.innerHTML += `<option value=${patient.id}>${patient.firstName.toUpperCase()} ${patient.lastName.toUpperCase()}</option>`
+        selectPatient.innerHTML += `<option value=${patient.id} ${appointment.patient.id == patient.id ? 'selected' : ""}>${patient.firstName.toUpperCase()} ${patient.lastName.toUpperCase()}</option>`
       }
+    
     })
-
+    return appointment;
   })
-  .then(() => {
+  .then((appointment) => {
     const url = '/dentists';
     const settings = {
       method: 'GET'
@@ -82,7 +78,7 @@ function findBy(id) {
     .then(data => {
       for(dentist of data){
       const selectDentist = document.querySelector("#select-dentist");
-      selectDentist.innerHTML += `<option value=${dentist.id}>${dentist.firstName.toUpperCase()} ${dentist.lastName.toUpperCase()}</option>`
+      selectDentist.innerHTML += `<option value=${dentist.id} ${appointment.dentist.id == dentist.id ? 'selected' : ""}>${dentist.firstName.toUpperCase()} ${dentist.lastName.toUpperCase()}</option>`
       }
     })
 
@@ -94,15 +90,4 @@ function findBy(id) {
 })
 
 }
-
-   
-   //            document.querySelector('#appointment_id_update').value = patient.id;
-   //            document.querySelector('#first-name-update').value = patient.firstName;
-   //            document.querySelector('#last-name-update').value = patient.lastName;
-   //            document.querySelector('#dni-update').value = patient.dni;
-   //            document.querySelector('#street-update').value = patient.address.street;
-   //            document.querySelector('#number-update').value = patient.address.number;
-   //            document.querySelector('#location-update').value = patient.address.location;
-   //            document.querySelector('#province-update').value = patient.address.province;
-   //            document.querySelector('#div_patient_updating').style.display = "block";
 
