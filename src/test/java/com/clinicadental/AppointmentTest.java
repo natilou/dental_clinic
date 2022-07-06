@@ -6,7 +6,6 @@ import com.clinicadental.clinica.model.Address;
 import com.clinicadental.clinica.model.Dentist;
 import com.clinicadental.clinica.model.Patient;
 import com.clinicadental.clinica.model.Appointment;
-import com.clinicadental.clinica.service.AddressService;
 import com.clinicadental.clinica.service.DentistService;
 import com.clinicadental.clinica.service.PatientService;
 import com.clinicadental.clinica.service.AppointmentService;
@@ -33,11 +32,9 @@ public class AppointmentTest {
     PatientService patientService;
     @Autowired
     DentistService dentistService;
-    @Autowired
-    AddressService addressService;
 
     @Test
-    public void TestSave() throws BadRequestException {
+    public void TestSave() throws BadRequestException, ResourceNotFoundException {
         Address address = new Address("Scranton", 189, "Pensilvania", "Pensi");
         Patient patient1 = new Patient("Angela", "Martin", "12548996", new Date(), address);
         Patient patientToSave = patientService.save(patient1);
@@ -82,7 +79,7 @@ public class AppointmentTest {
     }
 
     @Test
-    public void TestGetId() throws BadRequestException {
+    public void TestGetId() throws BadRequestException, ResourceNotFoundException {
         Address address = new Address("Scranton", 189, "Pensilvania", "Pensi");
         Patient patient = new Patient("Angela", "Martin", "12548996", new Date(), address);
         Patient patientToSave = patientService.save(patient);
