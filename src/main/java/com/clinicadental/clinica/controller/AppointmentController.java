@@ -40,7 +40,7 @@ public class AppointmentController {
 
 
     @PostMapping
-    public ResponseEntity<Appointment> save(@RequestBody Appointment appointment) throws BadRequestException {
+    public ResponseEntity<Appointment> save(@RequestBody Appointment appointment) throws BadRequestException, ResourceNotFoundException {
         return ResponseEntity.ok(appointmentService.save(appointment));
     }
 

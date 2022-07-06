@@ -3,8 +3,6 @@ package com.clinicadental.clinica.service;
 import com.clinicadental.clinica.exceptions.BadRequestException;
 import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Appointment;
-import com.clinicadental.clinica.repository.IDentistRepository;
-import com.clinicadental.clinica.repository.IPatientRepository;
 import com.clinicadental.clinica.repository.IAppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +16,17 @@ public class AppointmentService {
     @Autowired
     private IAppointmentRepository iAppointmentRepository;
     @Autowired
-    private IPatientRepository iPatientRepository;
+    private PatientService patientService;
     @Autowired
-    private IDentistRepository iDentistRepository;
+    private DentistService dentistService;
 
 
 
-    public Appointment save(Appointment appointment) throws BadRequestException {
-        if(iPatientRepository.findById(appointment.getPatient().getId()).isEmpty()){
+    public Appointment save(Appointment appointment) throws BadRequestException, ResourceNotFoundException {
+        if(patientService.findById(appointment.getPatient().getId()) == null){
             throw new BadRequestException("Patient does not exist");
-        } else if (iDentistRepository.findById(appointment.getDentist().getId()).isEmpty()){
+        }
+        if (dentistService.findById(appointment.getDentist().getId()) == null){
             throw new BadRequestException("Dentist does not exist");
         }
         //appointment.setDate(new Date());
