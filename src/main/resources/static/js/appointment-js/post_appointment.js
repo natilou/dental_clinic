@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
     }),
 
     formulario.addEventListener('submit', function (event) {
-         event.preventDefault();
+       event.preventDefault();
        let select_patient = document.querySelector('#select-patient-save');
        let patient_appointment = select_patient.options[select_patient.selectedIndex].value;
        let select_dentist = document.querySelector('#select-dentist-save');
@@ -75,15 +75,14 @@ window.addEventListener('load', function () {
                  document.querySelector("#appointment-date-save").value = "";
             })
             .catch(error => {
-                    //Si hay algun error se muestra un mensaje diciendo que el odontologo
-                    //no se pudo guardar y se intente nuevamente
+
                     let errorAlert = '<div class="alert alert-danger alert-dismissible">' +
                                      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
                                      '<strong> Error intente nuevamente</strong> </div>'
                     console.log(error);
                       document.querySelector('#response').innerHTML = errorAlert;
                       document.querySelector('#response').style.display = "block";
-                     //se dejan todos los campos vacíos por si se quiere ingresar otro paciente
+
                      document.querySelector("#appointment-date-save").value = "";
             }),
 

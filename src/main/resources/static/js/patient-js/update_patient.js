@@ -3,11 +3,7 @@ window.addEventListener('load', function () {
    const formulario = document.querySelector('#update_patient_form');
 
    formulario.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-       let odontologoId = document.querySelector('#patient_id_update').value;
-
-
+       event.preventDefault();
        const formData = {
 
            id: document.querySelector('#patient_id_update').value,

@@ -6,17 +6,17 @@ window.addEventListener('load', function () {
     event.preventDefault();
 
     let appointmentId = document.querySelector('#appointment_id_update').value;
-    let select_patient = document.querySelector('#select-patient');
-    let patient_appointment = select_patient.options[select_patient.selectedIndex].value;
-    let select_dentist = document.querySelector('#select-dentist');
-    let dentist_appointment = select_dentist.options[select_dentist.selectedIndex].value
+    let selectPatient = document.querySelector('#select-patient');
+    let patientAppointment = selectPatient.options[selectPatient.selectedIndex].value;
+    let selectDentist = document.querySelector('#select-dentist');
+    let dentistAppointment = selectDentist.options[selectDentist.selectedIndex].value
     const formData = {
       id: appointmentId,
       patient: {
-            id: patient_appointment,
+            id: patientAppointment,
       },
       dentist: {
-            id: dentist_appointment,
+            id: dentistAppointment,
       },
       date: document.querySelector("#appointment-date-update").value
     };
@@ -44,8 +44,9 @@ function findBy(id) {
   .then(response => response.json())
   .then(data => {
     let appointment = data;
+     let date_appointment = new Date(appointment.date)
     document.querySelector('#appointment_id_update').value = appointment.id;
-    document.querySelector("#appointment-date-update").value = appointment.date.toISOString().split('T')[0];
+    document.querySelector("#appointment-date-update").value = date_appointment.toISOString().split('T')[0] + " " + date_appointment.toISOString().split('T')[1].slice(0, 5);
     document.querySelector('#div_appointment_updating').style.display = "block";
     return appointment;
   })
