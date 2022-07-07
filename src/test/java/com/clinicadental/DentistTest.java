@@ -43,29 +43,29 @@ public class DentistTest {
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(dentistService.findById(1));
+        Assertions.assertNotNull(dentistService.findById(1L));
     }
 
     @Test
     public void TestDeleteById() throws ResourceNotFoundException {
-        Assertions.assertTrue(dentistService.deleteById(3));
+        Assertions.assertTrue(dentistService.deleteById(3L));
     }
 
     @Test
     public void TestGetFirstName() throws ResourceNotFoundException {
-        Dentist dentist = dentistService.findById(1);
+        Dentist dentist = dentistService.findById(1L);
         Assertions.assertNotNull(dentist.getFirstName());
     }
 
     @Test
     public void TestGetLastName() throws ResourceNotFoundException {
-        Dentist dentist = dentistService.findById(1);
+        Dentist dentist = dentistService.findById(1L);
         Assertions.assertNotNull(dentist.getLastName());
     }
 
     @Test
     public void TestGetRegistrationNumber() throws ResourceNotFoundException {
-        Dentist dentist = dentistService.findById(1);
+        Dentist dentist = dentistService.findById(1L);
         Assertions.assertNotNull(dentist.getRegistrationNumber());
     }
 

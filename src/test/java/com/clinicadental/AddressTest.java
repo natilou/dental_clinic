@@ -36,7 +36,7 @@ public class AddressTest {
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(addressService.findById(21));
+        Assertions.assertNotNull(addressService.findById(21L));
     }
 
     @Test
@@ -47,26 +47,26 @@ public class AddressTest {
     }
     @Test
     public void TestGetStreet() throws ResourceNotFoundException {
-        Address address = addressService.findById(2);
+        Address address = addressService.findById(2L);
         Assertions.assertNotNull(address.getStreet());
     }
 
     @Test
     public void TestGetNumber() throws ResourceNotFoundException {
-        Address address = addressService.findById(2);
+        Address address = addressService.findById(2L);
         Assertions.assertNotNull(address.getNumber());
     }
 
     @Test
     public void TestGetLocation() throws ResourceNotFoundException {
-        Address address = addressService.findById(2);
+        Address address = addressService.findById(2L);
         Assertions.assertNotNull(address.getLocation());
     }
 
     @SneakyThrows
     @Test
     public void TestGetProvince(){
-        Address address = addressService.findById(2);
+        Address address = addressService.findById(2L);
         Assertions.assertNotNull(address.getProvince());
     }
 

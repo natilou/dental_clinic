@@ -48,7 +48,7 @@ public class AppointmentTest {
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(appointmentService.findById(1));
+        Assertions.assertNotNull(appointmentService.findById(1L));
     }
 
     @Test
@@ -74,8 +74,8 @@ public class AppointmentTest {
 
     @Test
     public void TestDeleteById() throws ResourceNotFoundException {
-        Assertions.assertTrue(appointmentService.deleteById(102));
-        Assertions.assertTrue(appointmentService.deleteById(152));
+        Assertions.assertTrue(appointmentService.deleteById(102L));
+        Assertions.assertTrue(appointmentService.deleteById(152L));
     }
 
     @Test
@@ -93,19 +93,19 @@ public class AppointmentTest {
 
     @Test
     public void TestGetDentistappointment() throws ResourceNotFoundException {
-        Appointment appointment = appointmentService.findById(1);
+        Appointment appointment = appointmentService.findById(1L);
         Assertions.assertNotNull(appointment.getDentist());
     }
 
     @Test
     public void TestGetPatientappointment() throws ResourceNotFoundException {
-        Appointment appointment = appointmentService.findById(1);
+        Appointment appointment = appointmentService.findById(1L);
         Assertions.assertNotNull(appointment.getPatient());
     }
 
     @Test
     public void TestGetDateappointment() throws ResourceNotFoundException {
-        Appointment appointment = appointmentService.findById(1);
+        Appointment appointment = appointmentService.findById(1L);
         Assertions.assertNotNull(appointment.getDate());
     }
 }

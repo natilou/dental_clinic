@@ -43,8 +43,8 @@ public class PatientTest {
 
    @Test
     public void TestDeleteById() throws ResourceNotFoundException {
-       patientService.deleteById(1);
-        Assertions.assertTrue(patientService.findById(1)==null);
+       patientService.deleteById(1L);
+        Assertions.assertTrue(patientService.findById(1L)==null);
     }
     @Test
     public void TestFindAll(){
@@ -53,7 +53,7 @@ public class PatientTest {
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(patientService.findById(25));
+        Assertions.assertNotNull(patientService.findById(25L));
     }
 
     @Test
@@ -65,31 +65,31 @@ public class PatientTest {
 
     @Test
     public void TestGetLastName() throws ResourceNotFoundException {
-        Patient patient = patientService.findById(1);
+        Patient patient = patientService.findById(1L);
         Assertions.assertNotNull(patient.getLastName());
     }
 
     @Test
     public void TestGetFirstName() throws ResourceNotFoundException {
-        Patient patient = patientService.findById(1);
+        Patient patient = patientService.findById(1L);
         Assertions.assertNotNull(patient.getFirstName());
     }
 
     @Test
     public void TestGetDni() throws ResourceNotFoundException {
-        Patient patient = patientService.findById(1);
+        Patient patient = patientService.findById(1L);
         Assertions.assertNotNull(patient.getDni());
     }
 
     @Test
     public void TestGetEntryDate() throws ResourceNotFoundException {
-        Patient patient = patientService.findById(1);
+        Patient patient = patientService.findById(1L);
         Assertions.assertNotNull(patient.getEntryDate());
     }
 
     @Test
     public void TestGetAddress() throws ResourceNotFoundException {
-        Patient patient = patientService.findById(1);
+        Patient patient = patientService.findById(1L);
         Assertions.assertNotNull(patient.getAddress());
     }
 }
