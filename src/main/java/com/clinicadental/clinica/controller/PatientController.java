@@ -20,12 +20,12 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<Patient> findById(@PathVariable Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok(patientService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<String> deleteById(@PathVariable Long id) throws ResourceNotFoundException {
         patientService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Patient with id " + id + " deleted");
     }

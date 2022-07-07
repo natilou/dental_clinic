@@ -21,7 +21,7 @@ public class PatientService{
     }
 
 
-    public Patient findById(Integer id) throws ResourceNotFoundException {
+    public Patient findById(Long id) throws ResourceNotFoundException {
         Optional<Patient> optionalPatient= iPatientRepository.findById(id);
         if (optionalPatient.isEmpty()){
             throw new ResourceNotFoundException("Patient with id " + id + " does not exist.");
@@ -30,7 +30,7 @@ public class PatientService{
     }
 
 
-    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+    public boolean deleteById(Long id) throws ResourceNotFoundException {
         if(this.findById(id) == null){
             throw new ResourceNotFoundException("Patient with id " + id + " does not exist.");
         }

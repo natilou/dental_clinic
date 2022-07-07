@@ -24,8 +24,8 @@ public class DataLoader implements ApplicationRunner {
         String password2 = passwordEncoder2.encode("password2");
 
         //Create two user instances
-        User user1 = new User("admin", "admin2@dentalclinc.com", password, UserRoles.ADMIN);
-        User user2 = new User("user", "user2@dentalclinic.com", password2, UserRoles.USER);
+        User user1 = new User("admin", "admin-dc@dentalclinc.com", password, UserRoles.ADMIN);
+        User user2 = new User("user", "user-dc@dentalclinic.com", password2, UserRoles.USER);
 
         this.iUserRepository.save(user1);
         this.iUserRepository.save(user2);

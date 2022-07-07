@@ -18,7 +18,7 @@ public class DentistService {
         return iDentistRepository.save(dentist);
     }
 
-    public Dentist findById(Integer id) throws ResourceNotFoundException {
+    public Dentist findById(Long id) throws ResourceNotFoundException {
         Optional<Dentist> optionalDentist = iDentistRepository.findById(id);
         if(optionalDentist.isEmpty()){
             throw new ResourceNotFoundException("Dentist with id " + id + " does not exist.");
@@ -26,7 +26,7 @@ public class DentistService {
         return optionalDentist.get();
     }
 
-    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+    public boolean deleteById(Long id) throws ResourceNotFoundException {
         if(this.findById(id) == null) {
             throw new ResourceNotFoundException("Dentist with id " + id + " does not exist.");
         }

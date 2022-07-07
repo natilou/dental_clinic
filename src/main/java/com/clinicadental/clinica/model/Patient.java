@@ -9,7 +9,7 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_sequence")
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     private String lastName;
     private String firstName;
     private String dni;
@@ -29,7 +29,7 @@ public class Patient {
         this.address = address;
     }
 
-    public Patient(Integer id, String lastName, String firstName, String dni, Date entryDate, Address address) {
+    public Patient(Long id, String lastName, String firstName, String dni, Date entryDate, Address address) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -79,11 +79,11 @@ public class Patient {
         this.address = address;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

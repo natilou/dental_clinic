@@ -17,12 +17,12 @@ public class DentistController {
     private DentistService dentistService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dentist> findById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<Dentist> findById(@PathVariable Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok(dentistService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<String> deleteById(@PathVariable Long id) throws ResourceNotFoundException {
         dentistService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Dentist with id " + id + " deleted.");
 

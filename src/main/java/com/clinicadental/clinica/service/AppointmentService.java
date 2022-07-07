@@ -20,8 +20,6 @@ public class AppointmentService {
     @Autowired
     private DentistService dentistService;
 
-
-
     public Appointment save(Appointment appointment) throws BadRequestException, ResourceNotFoundException {
         if(patientService.findById(appointment.getPatient().getId()) == null){
             throw new BadRequestException("Patient does not exist");
@@ -33,7 +31,7 @@ public class AppointmentService {
         return iAppointmentRepository.save(appointment);
     }
 
-    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+    public boolean deleteById(Long id) throws ResourceNotFoundException {
         if(this.findById(id) == null){
            throw new ResourceNotFoundException("Appointment with id " + id + " does not exist.");
         }
@@ -42,7 +40,7 @@ public class AppointmentService {
     }
 
 
-    public Appointment findById(Integer id) throws ResourceNotFoundException {
+    public Appointment findById(Long id) throws ResourceNotFoundException {
         Optional<Appointment> optionalAppointment = iAppointmentRepository.findById(id);
        if(optionalAppointment.isEmpty()){
            throw new ResourceNotFoundException("Appointment with id " + id + " does not exist.");

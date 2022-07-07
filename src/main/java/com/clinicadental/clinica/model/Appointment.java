@@ -8,7 +8,7 @@ import java.util.Date;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_sequence")
-    private Integer id;
+    private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="patient_id")
     private Patient patient;
@@ -20,7 +20,7 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(Integer id, Patient patient, Dentist dentist, Date date) {
+    public Appointment(Long id, Patient patient, Dentist dentist, Date date) {
         this.id = id;
         this.patient = patient;
         this.dentist = dentist;
@@ -33,11 +33,11 @@ public class Appointment {
         this.date = date;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

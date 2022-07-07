@@ -17,7 +17,7 @@ public class AddressService {
         return iAddressRepository.save(address);
     }
 
-    public Address findById(Integer id) throws ResourceNotFoundException {
+    public Address findById(Long id) throws ResourceNotFoundException {
         Optional<Address> optionalAddress = iAddressRepository.findById(id);
         if(optionalAddress.isEmpty()){
             throw new ResourceNotFoundException("Address with id " + id + " does not exist.");
@@ -26,7 +26,7 @@ public class AddressService {
     }
 
 
-    public boolean deleteById(Integer id) throws ResourceNotFoundException {
+    public boolean deleteById(Long id) throws ResourceNotFoundException {
         if(this.findById(id) == null) {
             throw new ResourceNotFoundException("Address with id " + id + " does not exist.");
         }
