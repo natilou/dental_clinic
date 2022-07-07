@@ -1,8 +1,10 @@
 package com.clinicadental.clinica.controller;
 import com.clinicadental.clinica.exceptions.BadRequestException;
+import com.clinicadental.clinica.exceptions.GlobalExceptions;
 import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Appointment;
 import com.clinicadental.clinica.service.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +22,16 @@ public class AppointmentController {
     private PatientService patientService;
     @Autowired
     private DentistService dentistService;
+    private static Logger logger = Logger.getLogger(GlobalExceptions.class);
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Appointment> findById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<Appointment> findById(@PathVariable Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok(appointmentService.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ResponseEntity<String> deleteById(@PathVariable Long id) throws ResourceNotFoundException {
         appointmentService.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Deleted");
     }
@@ -51,6 +54,7 @@ public class AppointmentController {
 
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<String> manageErrorBadRequest(BadRequestException e){
+        logger.error(e.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }
