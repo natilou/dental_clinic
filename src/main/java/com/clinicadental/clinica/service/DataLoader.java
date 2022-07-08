@@ -27,8 +27,8 @@ public class DataLoader implements ApplicationRunner {
         User user1 = new User("admin", "admin-dc@dentalclinc.com", password, UserRoles.ADMIN);
         User user2 = new User("user", "user-dc@dentalclinic.com", password2, UserRoles.USER);
 
-        this.iUserRepository.save(user1);
-        this.iUserRepository.save(user2);
+        //this.iUserRepository.save(user1);
+        //this.iUserRepository.save(user2);
 
     }
 }
