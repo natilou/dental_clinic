@@ -1,6 +1,5 @@
 package com.clinicadental.clinica.controller;
 import com.clinicadental.clinica.exceptions.BadRequestException;
-import com.clinicadental.clinica.exceptions.GlobalExceptions;
 import com.clinicadental.clinica.exceptions.ResourceNotFoundException;
 import com.clinicadental.clinica.model.Appointment;
 import com.clinicadental.clinica.service.*;
@@ -22,7 +21,7 @@ public class AppointmentController {
     private PatientService patientService;
     @Autowired
     private DentistService dentistService;
-    private static Logger logger = Logger.getLogger(GlobalExceptions.class);
+    private static Logger logger = Logger.getLogger(AppointmentController.class);
 
 
     @GetMapping("/{id}")
