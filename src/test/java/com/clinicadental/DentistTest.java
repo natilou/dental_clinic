@@ -34,6 +34,7 @@ public class DentistTest {
     @Test
     public void TestAddNewDentist(){
         Assertions.assertNotNull(dentistService.save(dentist5));
+        Assertions.assertNotNull(dentistService.save(dentist4));
 
     }
     @Test
@@ -48,7 +49,7 @@ public class DentistTest {
 
     @Test
     public void TestDeleteById() throws ResourceNotFoundException {
-        Assertions.assertTrue(dentistService.deleteById(3L));
+        Assertions.assertTrue(dentistService.deleteById(2L));
     }
 
     @Test

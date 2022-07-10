@@ -36,7 +36,7 @@ public class AddressTest {
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(addressService.findById(21L));
+        Assertions.assertNotNull(addressService.findById(1L));
     }
 
     @Test

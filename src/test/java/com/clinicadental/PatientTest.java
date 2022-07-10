@@ -43,17 +43,16 @@ public class PatientTest {
 
    @Test
     public void TestDeleteById() throws ResourceNotFoundException {
-       patientService.deleteById(1L);
-        Assertions.assertTrue(patientService.findById(1L)==null);
+       Assertions.assertTrue(patientService.deleteById(52L));
     }
     @Test
     public void TestFindAll(){
-        Assertions.assertTrue(patientService.findAll().size() == 10);
+        Assertions.assertNotNull(patientService.findAll());
     }
 
     @Test
     public void TestFindById() throws ResourceNotFoundException {
-        Assertions.assertNotNull(patientService.findById(25L));
+        Assertions.assertNotNull(patientService.findById(52L));
     }
 
     @Test
